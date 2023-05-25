@@ -1,9 +1,10 @@
-IP = '192.168.1.3'
-PORT = 65433
-CONNECTION = (IP, PORT)
+ip = "localhost"
+port = 21379
+CONNECTION = (ip, port)
+
 
 def read_data(socket):
-    data = b''
-    while b'\r\n\r\n' not in data:
+    data = b""
+    while b"\r\n\r\n" not in data:
         data += socket.recv(1)
     return data
