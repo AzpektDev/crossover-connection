@@ -1,5 +1,5 @@
-IP = '192.168.1.3'
-PORT = 65433
+IP = '192.168.1.2'
+PORT = 65431
 CONNECTION = (IP, PORT)
 
 def read_data(socket):

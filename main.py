@@ -49,6 +49,6 @@ elif choice == 'q':
     SystemExit("Quitting program") 
 else:
     for x in range(100):
-        print("Skill issue lmao Bro cant even type a letter")
+        print("Skill issue lmao Bro cant even type a single letter")
     time.sleep(1)
     os.kill(os.getppid(), signal.SIGHUP)
