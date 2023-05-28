@@ -2,6 +2,7 @@ import socket
 from config import CONNECTION, read_data
 import os
 from utils.utils import cls
+import time
 
 cls()
 
@@ -12,14 +13,14 @@ def client_program():
     while True:
         message = input("Enter your message: ")
 
-        is_file = False
+        message_is_file = False
         try:
             with open(message, 'r') as f:
-                is_file = True
+                message_is_file = True
         except FileNotFoundError:
             pass
 
-        if is_file:
+        if message_is_file:
             file_type = message.split('.')[-1]
             file_size = os.path.getsize(message)
             file_name = os.path.basename(message)
@@ -36,7 +37,31 @@ def client_program():
             break
 
         data = read_data(client_socket).decode().strip()
-        print("Received from server: " + data)
+
+        is_file = False
+        
+        if data.startswith("FILE-"):
+            is_file = True
+
+            ts = time.time()
+
+
+            file_header = data.split('\r\n')[0]
+            file_type = file_header.split('-')[1]
+            file_size = int(file_header.split('-')[2])
+            file_name = file_header.split('-')[3]
+            file_contents = data.split('\r\n')[1]
+            
+            if not os.path.exists('recived'):
+                os.mkdir('recived')
+
+            with open(f"recived/{file_name}-{ts}.{file_type}", 'w') as f:
+                f.write(file_contents)
+
+        if is_file:
+            print (f"Received file from client: {file_name}.{file_type} ({file_size} bytes) - saved to recived/{file_name}-{ts}.{file_type}")
+        else:
+            print("Received from client: " + data)
 
     client_socket.close()
 
