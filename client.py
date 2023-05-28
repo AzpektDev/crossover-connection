@@ -1,6 +1,9 @@
 import socket
 from config import CONNECTION, read_data
 import os
+from utils.utils import cls
+
+cls()
 
 def client_program():
     client_socket = socket.socket()

@@ -2,14 +2,19 @@ import socket
 from config import CONNECTION, read_data
 import os
 import time
+from utils.utils import cls, center_text
 
 FORMAT = "utf-8"
 
+cls()
 
 def server_program():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(CONNECTION)
     server_socket.listen(5)
+
+    print("Server is running!")
+    print("Awaiting connection...")
 
     conn, address = server_socket.accept()
     print("Connection from: " + str(address))
