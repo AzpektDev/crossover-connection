@@ -3,6 +3,7 @@ from config import CONNECTION, read_data
 import os
 import time
 from utils.utils import cls, center_text
+from colorama import Fore, Style
 
 FORMAT = "utf-8"
 
@@ -13,11 +14,11 @@ def server_program():
     server_socket.bind(CONNECTION)
     server_socket.listen(5)
 
-    print("Server is running!")
-    print("Awaiting connection...")
+    print(f"{Fore.GREEN}Server is running!{Style.RESET_ALL}")
+    print(f"{Fore.GREEN}Awaiting connection...{Style.RESET_ALL}")
 
     conn, address = server_socket.accept()
-    print("Connection from: " + str(address))
+    print(f"{Fore.BLUE}Connection from: {str(address)}{Style.RESET_ALL}")
 
     while True:
         data = read_data(conn).decode().strip()
@@ -30,7 +31,6 @@ def server_program():
             is_file = True
 
             ts = time.time()
-
 
             file_header = data.split('\r\n')[0]
             file_type = file_header.split('-')[1]
@@ -45,7 +45,7 @@ def server_program():
                 f.write(file_contents)
 
         if is_file:
-            print (f"Received file from client: {file_name}.{file_type} ({file_size} bytes) - saved to recived/{file_name}-{ts}.{file_type}")
+            print (f"{Fore.LIGHTWHITE_EX}Received file from client: {file_name}.{file_type} ({file_size} bytes) - saved to recived/{file_name}-{ts}.{file_type}{Style.RESET_ALL}")
         else:
             print("Received from client: " + data)
 

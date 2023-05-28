@@ -3,6 +3,7 @@ from config import CONNECTION, read_data
 import os
 from utils.utils import cls
 import time
+from colorama import Fore, Style
 
 cls()
 
@@ -59,7 +60,7 @@ def client_program():
                 f.write(file_contents)
 
         if is_file:
-            print (f"Received file from client: {file_name}.{file_type} ({file_size} bytes) - saved to recived/{file_name}-{ts}.{file_type}")
+            print(f"{Fore.LIGHTWHITE_EX}Received file from client: {file_name}.{file_type} ({file_size} bytes) - saved to recived/{file_name}-{ts}.{file_type}{Style.RESET_ALL}")
         else:
             print("Received from client: " + data)
 
