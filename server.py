@@ -14,7 +14,7 @@ def server_program():
 
     while True:
         data = read_data(conn).decode().strip()
-        if data:
+        if not data:
             break
         print("Received from client: " + data)
 
