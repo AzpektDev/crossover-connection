@@ -1,0 +1,10 @@
+ls
+dirba
+nmapa
+cd
+pwd
+netdiscover
+rm
+cp
+mv
+mdkir
