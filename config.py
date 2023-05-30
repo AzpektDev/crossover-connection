@@ -1,4 +1,3 @@
-# ip = "192.168.1.1"
 ip = "localhost"
 port = 21379
 CONNECTION = (ip, port)

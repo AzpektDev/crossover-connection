@@ -23,6 +23,8 @@ def server_program():
         command = data.split(" ")[0]
         if command in commands:
             response = commands[command]
+        elif "list" in data:
+            response = "pwd, ls, cd, nmap, netdiscover, rm, cp, mkdir, mv, dirb"
         else:
             response = "Command not found"
 
