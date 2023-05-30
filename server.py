@@ -1,5 +1,6 @@
 import socket
 from config import CONNECTION, read_data
+from commands import commands
 
 FORMAT = "utf-8"
 
@@ -16,13 +17,16 @@ def server_program():
         data = read_data(conn).decode().strip()
         if not data:
             break
-        print("Received from client: " + data)
 
-        message = input("Enter your response: ")
-        conn.sendall(message.encode(FORMAT) + b"\r\n\r\n")
+        print("received: " + data)
 
-        if message.lower().strip() == "bye":
-            break
+        command = data.split(" ")[0]
+        if command in commands:
+            response = commands[command]
+        else:
+            response = "Command not found"
+
+        conn.sendall(response.encode(FORMAT) + b"\r\n\r\n")
 
     conn.close()
 

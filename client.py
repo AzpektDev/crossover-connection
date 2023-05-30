@@ -14,7 +14,8 @@ def client_program():
             break
 
         data = read_data(client_socket).decode().strip()
-        print("Received from server: " + data)
+
+        print(data)
 
     client_socket.close()
 
