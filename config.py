@@ -1,5 +1,5 @@
-ip = "localhost"
-port = 8080
+ip = "192.168.1.1"
+port = 21379
 CONNECTION = (ip, port)
 
 
